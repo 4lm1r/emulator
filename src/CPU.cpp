@@ -236,15 +236,20 @@ std::string CPU::execute(const std::string& cmd, uint32_t* memory_start_addr) {
                         int32_t signed_val2 = static_cast<int32_t>(val2);
                         int32_t signed_result = signed_val1 - signed_val2;
                         result_val = static_cast<uint32_t>(signed_result);
+                        uint32_t flags = regs.get("FLAGS"); //Preserve existing flags
                         if (signed_result == 0) flags |= ZF;
                         if (signed_result < 0) flags |= SF;
                         if (((signed_val1 > 0 && signed_val2 < 0 && signed_result < 0) ||
                              (signed_val1 < 0 && signed_val2 > 0 && signed_result > 0))) flags |= OF;
                         regs.set("FLAGS", flags);
-                        char debug_str[64];
-                        snprintf(debug_str, sizeof(debug_str), "CMP [%08X] - %08X: ZF=%d SF=%d OF=%d", 
-                                 addr, val2, (flags & ZF) != 0, (flags & SF) != 0, (flags & OF) != 0);
-                        status = debug_str;
+                        
+                        std::stringstream ss;
+                        ss << "CMP [" << std::hex << addr << "] - " << val2
+                           << ": ZF=" << ((flags & CPU::ZF) != 0)
+                           << " SF=" << ((flags & CPU::SF) != 0)
+                           << " OF=" << ((flags & CPU::OF) != 0)
+                           << " FLAGS=" << flags;
+                        status = ss.str();
                     }
                     if (!is_running) {
                         history.push_back({cmd_addr, cmd});
@@ -324,10 +329,16 @@ std::string CPU::execute(const std::string& cmd, uint32_t* memory_start_addr) {
                 if (((signed_val1 > 0 && signed_val2 < 0 && signed_result < 0) ||
                      (signed_val1 < 0 && signed_val2 > 0 && signed_result > 0))) flags |= OF;
                 regs.set("FLAGS", flags);
-                char debug_str[64];
-                snprintf(debug_str, sizeof(debug_str), "CMP %s - %08X: ZF=%d SF=%d OF=%d", 
-                         reg1_upper.c_str(), val2, (flags & ZF) != 0, (flags & SF) != 0, (flags & OF) != 0);
-                status = debug_str;
+                
+                uint32_t updated_flags = regs.get("FLAGS");
+                std::stringstream ss;
+                ss << "CMP " << reg1 << " - " << std::hex << val2
+                   << ": ZF=" << ((flags & CPU::ZF) != 0)
+                   << " SF=" << ((flags & CPU::SF) != 0)
+                   << " OF=" << ((flags & CPU::OF) != 0)
+                   << " FLAGS_set=" << flags
+                   << " FLAGS_get=" << updated_flags;
+                status = ss.str();
             }
             if (!is_running) {
                 history.push_back({cmd_addr, cmd});
@@ -393,19 +404,31 @@ std::string CPU::execute(const std::string& cmd, uint32_t* memory_start_addr) {
         try {
             std::string addr_upper = reg1;
             std::transform(addr_upper.begin(), addr_upper.end(), addr_upper.begin(), ::toupper);
-            int32_t offset = std::stoul(addr_upper, nullptr, 16); // Treat as signed offset
+            //uint32_t offset = std::stoul(addr_upper, nullptr, 16); // Treat as signed offset
+            uint32_t target_addr = std::stoul(addr_upper, nullptr, 16);
             uint32_t currentEIP = regs.get("EIP");
-            uint32_t target_addr = currentEIP + offset; // Relative jump
+            //uint32_t target_addr = currentEIP + offset; // Relative jump
+            uint32_t flags = regs.get("FLAGS");
+            std::stringstream ss;
+            ss << "JE: FLAGS=" << std::hex << flags 
+               << " ZF=" << CPU::ZF 
+               << " Cond=" << ((flags & CPU::ZF) != 0) 
+               << " EIP=" << currentEIP 
+               << " Target=" << target_addr;
+            status = ss.str();
 
-            if (regs.get("FLAGS") & ZF) {
+           /* if (regs.get("FLAGS") & ZF) {
                 regs.set("EIP", target_addr);
-                status = "JE/JZ jumped to " + reg1;
+                status = "JE/JZ jumped to " + reg1; */
+            if (flags & CPU::ZF) {
+                regs.set("EIP", target_addr);
+                status += " Jumped to " + reg1;
             } else {
-                status = "JE/JZ no jump";
+                status += " No jump";
                 //Get the correct instruction size.
-                uint32_t instructionSize = 0;
+                //uint32_t instructionSize = 0;
                 //Code to calculate the instruction size, based on the operand.
-                instructionSize = 6; //Example. This needs to be correctly calculated.
+                uint32_t instructionSize = 6; //Example. This needs to be correctly calculated.
                 regs.set("EIP", currentEIP + instructionSize);
             }
             if (!is_running) history.push_back({cmd_addr, cmd});
@@ -413,29 +436,9 @@ std::string CPU::execute(const std::string& cmd, uint32_t* memory_start_addr) {
             status = "JE/JZ failed: Invalid address";
         }
     } else {
-        status = "JE/JZ failed: Missing address";
-    }
-//} // <--- Missing closing brace
-  /*  } else if (op_upper == "JE" || op_upper == "JZ") {
-        if (!reg1.empty()) {
-            try {
-                std::string addr_upper = reg1;
-                std::transform(addr_upper.begin(), addr_upper.end(), addr_upper.begin(), ::toupper);
-                uint32_t target_addr = std::stoul(addr_upper, nullptr, 16);
-                if (regs.get("FLAGS") & ZF) {
-                    regs.set("EIP", target_addr);
-                    status = "JE/JZ jumped to " + reg1;
-                } else {
-                    status = "JE/JZ no jump";
-                    if (!is_running) regs.set("EIP", cmd_addr + 4);
-                }
-                if (!is_running) history.push_back({cmd_addr, cmd});
-            } catch (...) {
-                status = "JE/JZ failed: Invalid address";
-            }
-        } else {
-            status = "JE/JZ failed: Missing address";
-        } */
+             status = "JE/JZ failed: Missing address";
+        }
+
     } else if (op_upper == "JNE" || op_upper == "JNZ") {
         if (!reg1.empty()) {
             try {
@@ -588,7 +591,7 @@ std::string CPU::execute(const std::string& cmd, uint32_t* memory_start_addr) {
                 else if (reg.first == "SP" && mode != "REGS") regs.set(reg.first, mem.STACK_TOP & 0xFFFF);
                 else regs.set(reg.first, 0);
             }
-            if (mode == "ALL") regs.set("EIP", 0); // Reset EIP to 0 for ALL
+            if (mode == "ALL") regs.set("EIP", PROGRAM_BASE); // Reset EIP to 0 for ALL
         }
         if (mode == "ALL" || mode == "STACK") {
             mem.clear();

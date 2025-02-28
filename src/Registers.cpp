@@ -1,6 +1,6 @@
 #include "Registers.hpp"
 #include <algorithm>
-#include <cstdint> // Added for uint32_t
+#include <cstdint>
 
 Registers::Registers() {
     regs = {
@@ -24,11 +24,11 @@ uint32_t Registers::get(const std::string& reg) const {
 void Registers::set(const std::string& reg, uint32_t val) {
     std::string reg_upper = reg;
     std::transform(reg_upper.begin(), reg_upper.end(), reg_upper.begin(), ::toupper);
-    sync(reg_upper, val);
-}
-
-const std::map<std::string, uint32_t>& Registers::getAll() const {
-    return regs;
+    if (reg_upper == "FLAGS" || reg_upper == "EIP") {
+        regs[reg_upper] = val; // Direct set for FLAGS and EIP
+    } else {
+        sync(reg_upper, val); // Sync only for other registers
+    }
 }
 
 void Registers::sync(const std::string& reg, uint32_t val) {
@@ -54,12 +54,14 @@ void Registers::sync(const std::string& reg, uint32_t val) {
         regs[base + "H"] = (full_val >> 8) & 0xFF;
     } else { // 16-bit
         regs[reg] = val & 0xFFFF;
-        if (reg != "FLAGS") {
-            regs["E" + reg] = (regs["E" + reg] & 0xFFFF0000) | (val & 0xFFFF);
-        }
+        regs["E" + reg] = (regs["E" + reg] & 0xFFFF0000) | (val & 0xFFFF);
         std::string low_reg = reg.substr(0, 1) + "L";
         std::string high_reg = reg.substr(0, 1) + "H";
         regs[low_reg] = val & 0xFF;
         regs[high_reg] = (val >> 8) & 0xFF;
     }
+}
+
+const std::map<std::string, uint32_t>& Registers::getAll() const {
+    return regs;
 }
