@@ -1,0 +1,23 @@
+Would you please continue to help with the emulator project?
+It is organized in the following directory structure:
+/emulator
+    CMakeLists.txt
+    /build
+    /include
+    /src
+and the project has the following files:
+    under include directory:
+    CPU.hpp
+    Emulator.hpp
+    Memory.hpp
+    Registers.hpp
+    Screen.hpp
+    
+    under src directory:
+    CPU.cpp
+    Emultaor.cpp
+    main.cpp
+    Memory.cpp
+    Registers.cpp
+    Screen.cpp
+    

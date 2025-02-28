@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/emulator.dir/link.d CMakeFiles/emulator.dir/src/Screen.cpp.o CMakeFiles/emulator.dir/src/Registers.cpp.o CMakeFiles/emulator.dir/src/Memory.cpp.o CMakeFiles/emulator.dir/src/CPU.cpp.o CMakeFiles/emulator.dir/src/Emulator.cpp.o CMakeFiles/emulator.dir/src/main.cpp.o -o emulator  -lcurses -lform

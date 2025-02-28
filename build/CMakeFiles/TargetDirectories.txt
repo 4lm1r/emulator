@@ -1,0 +1,3 @@
+/home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/build/CMakeFiles/emulator.dir
+/home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/build/CMakeFiles/edit_cache.dir
+/home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/build/CMakeFiles/rebuild_cache.dir
