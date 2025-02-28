@@ -1,6 +1,13 @@
 #include "Memory.hpp"
 
-Memory::Memory() {}
+Memory::Memory(uint32_t value) : value_(value) {}
+
+uint32_t Memory::getValue() const {
+   return value_;
+}
+void Memory::setValue(uint32_t value) {
+   value_ = value;
+}
 
 void Memory::write(uint32_t addr, uint32_t val, bool is_byte) {
     if (is_byte) {
@@ -33,8 +40,12 @@ void Memory::clear() {
     mem.clear();
 }
 
-const std::map<Memory, Memory>& Memory::getAll() const {
-    return mem;
+std::map<uint32_t, uint32_t> Memory::getAll() const {
+    std::map<uint32_t, uint32_t> memoryMap;
+    for (const auto& pair : memory_) {
+         memoryMap[pair.first] = pair.second.getValue();
+    }
+    return memoryMap;
 }
 
 void Memory::writeText(uint32_t addr, const std::string& text) {

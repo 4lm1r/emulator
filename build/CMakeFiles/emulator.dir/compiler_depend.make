@@ -822,6 +822,7 @@ CMakeFiles/emulator.dir/src/Registers.cpp.o: /home/abr/PROJECTS/C++Projects/C++L
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h
 
 CMakeFiles/emulator.dir/src/Screen.cpp.o: /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/src/Screen.cpp \
+  /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Memory.hpp \
   /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Screen.hpp \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -974,6 +975,7 @@ CMakeFiles/emulator.dir/src/Screen.cpp.o: /home/abr/PROJECTS/C++Projects/C++Less
   /usr/include/c++/14.2.1/clocale \
   /usr/include/c++/14.2.1/concepts \
   /usr/include/c++/14.2.1/cstddef \
+  /usr/include/c++/14.2.1/cstdint \
   /usr/include/c++/14.2.1/cstdio \
   /usr/include/c++/14.2.1/cstdlib \
   /usr/include/c++/14.2.1/cstring \

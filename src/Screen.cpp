@@ -144,7 +144,7 @@ void Screen::updateRegisters(const std::map<std::string, uint32_t>& regs, const 
     wrefresh(reg_win);
 }
 
-void Screen::updateStack(const Memory& mem, uint32_t esp) {
+void Screen::updateStack(const std::map<uint32_t, uint32_t>& mem, uint32_t esp) {
     wclear(stack_win);
     box(stack_win, 0, 0);
     mvwprintw(stack_win, 0, 1, "Stack (ESP)");
@@ -152,8 +152,13 @@ void Screen::updateStack(const Memory& mem, uint32_t esp) {
     int y = 1;
     mvwprintw(stack_win, y++, 1, "Top:");
     for (int i = 0; i < 10 && y < 13; i++) {
-        uint32_t addr = esp + (i * 4); // Start at ESP and go up (shows recent pushes)
-        uint32_t val = mem.read(addr);  // Use read() for full 32-bit value
+        uint32_t addr = esp + (i * 4);
+        auto it = mem.find(addr);
+        uint32_t val = 0; //Default value if not found.
+        if(it != mem.end()){
+            val = it->second;
+        }
+
         std::stringstream addr_str;
         addr_str << std::hex << std::uppercase << std::setw(8) << std::setfill('0') << addr;
         std::stringstream val_str;
@@ -170,7 +175,7 @@ void Screen::updateStack(const Memory& mem, uint32_t esp) {
 }
 
 void Screen::updateMemoryAndHistory(const std::map<uint32_t, uint32_t>& mem, uint32_t start_addr,
-                                    const std::vector<std::pair<uint32_t, std::string>>& history) {
+                                     const std::vector<std::pair<uint32_t, std::string>>& history) {
     wclear(memory_win);
     box(memory_win, 0, 0);
     mvwprintw(memory_win, 0, 1, "Memory");
@@ -185,8 +190,15 @@ void Screen::updateMemoryAndHistory(const std::map<uint32_t, uint32_t>& mem, uin
         std::stringstream hex_str;
         std::stringstream ascii_str;
         for (int j = 0; j < 16; j++) {
-            uint32_t byte_addr = addr + j;
-            uint8_t byte = mem.count(byte_addr) ? (mem.at(byte_addr) & 0xFF) : 0;
+            uint32_t byte_addr = addr; //The base address for the 16 byte block.
+            auto it = mem.find(byte_addr);
+            uint8_t byte = 0;
+
+            if (it != mem.end()) {
+                uint32_t value = it->second;
+                byte = (value >> (j * 8)) & 0xFF; //Extract the jth byte.
+            }
+
             hex_str << std::hex << std::uppercase << std::setw(2) << std::setfill('0') << static_cast<int>(byte);
             if (j < 15) hex_str << " ";
             ascii_str << (byte >= 32 && byte <= 126 ? static_cast<char>(byte) : '.');
@@ -198,6 +210,7 @@ void Screen::updateMemoryAndHistory(const std::map<uint32_t, uint32_t>& mem, uin
         mvwprintw(memory_win, y++, 1, "%s", line.c_str());
     }
     wrefresh(memory_win);
+
 
     wclear(history_win);
     box(history_win, 0, 0);

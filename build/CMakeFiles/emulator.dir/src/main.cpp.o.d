@@ -120,7 +120,7 @@ CMakeFiles/emulator.dir/src/main.cpp.o: \
  /usr/include/c++/14.2.1/bits/stl_map.h \
  /usr/include/c++/14.2.1/bits/stl_multimap.h \
  /usr/include/c++/14.2.1/bits/erase_if.h \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Registers.hpp \
- /usr/include/c++/14.2.1/cstdint \
  /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Memory.hpp \
+ /usr/include/c++/14.2.1/cstdint \
+ /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Registers.hpp \
  /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/CPU.hpp

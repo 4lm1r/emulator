@@ -13,7 +13,7 @@ public:
     Screen();
     ~Screen();
     void updateRegisters(const std::map<std::string, uint32_t>& regs, const std::string& changed_reg = "");
-    void updateStack(const Memory& mem, uint32_t esp); // Changed to take Memory&
+    void updateStack(const std::map<uint32_t, uint32_t>& mem, uint32_t esp); // Changed to take Memory&
     void updateMemoryAndHistory(const std::map<uint32_t, uint32_t>& mem, uint32_t start_addr,
                                 const std::vector<std::pair<uint32_t, std::string>>& history);
     void updateStatus(const std::string& msg);

@@ -388,7 +388,35 @@ std::string CPU::execute(const std::string& cmd, uint32_t* memory_start_addr) {
         } else {
             status = "POP failed: Invalid register";
         }
-    } else if (op_upper == "JE" || op_upper == "JZ") {
+        } else if (op_upper == "JE" || op_upper == "JZ") {
+    if (!reg1.empty()) {
+        try {
+            std::string addr_upper = reg1;
+            std::transform(addr_upper.begin(), addr_upper.end(), addr_upper.begin(), ::toupper);
+            int32_t offset = std::stoul(addr_upper, nullptr, 16); // Treat as signed offset
+            uint32_t currentEIP = regs.get("EIP");
+            uint32_t target_addr = currentEIP + offset; // Relative jump
+
+            if (regs.get("FLAGS") & ZF) {
+                regs.set("EIP", target_addr);
+                status = "JE/JZ jumped to " + reg1;
+            } else {
+                status = "JE/JZ no jump";
+                //Get the correct instruction size.
+                uint32_t instructionSize = 0;
+                //Code to calculate the instruction size, based on the operand.
+                instructionSize = 6; //Example. This needs to be correctly calculated.
+                regs.set("EIP", currentEIP + instructionSize);
+            }
+            if (!is_running) history.push_back({cmd_addr, cmd});
+        } catch (...) {
+            status = "JE/JZ failed: Invalid address";
+        }
+    } else {
+        status = "JE/JZ failed: Missing address";
+    }
+//} // <--- Missing closing brace
+  /*  } else if (op_upper == "JE" || op_upper == "JZ") {
         if (!reg1.empty()) {
             try {
                 std::string addr_upper = reg1;
@@ -407,7 +435,7 @@ std::string CPU::execute(const std::string& cmd, uint32_t* memory_start_addr) {
             }
         } else {
             status = "JE/JZ failed: Missing address";
-        }
+        } */
     } else if (op_upper == "JNE" || op_upper == "JNZ") {
         if (!reg1.empty()) {
             try {
