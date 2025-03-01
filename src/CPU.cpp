@@ -606,7 +606,7 @@ std::string CPU::execute(const std::string& cmd, uint32_t* memory_start_addr) {
             history.push_back({cmd_addr, cmd});
             regs.set("EIP", cmd_addr + 4);
         }
-    } else if (op_upper == "MEMSET") {
+ /*   } else if (op_upper == "MEMSET") {
         if (!reg1.empty()) {
             try {
                 std::string addr_upper = reg1;
@@ -625,8 +625,74 @@ std::string CPU::execute(const std::string& cmd, uint32_t* memory_start_addr) {
             }
         } else {
             status = "MEMSET failed: Missing address";
+        } */
+        } else if (op_upper == "MEMSET") {
+    if (!reg1.empty()) {
+        try {
+            std::string addr_upper = reg1;
+            std::transform(addr_upper.begin(), addr_upper.end(), addr_upper.begin(), ::toupper);
+            uint32_t addr = std::stoul(addr_upper, nullptr, 16);
+            if (memory_start_addr) *memory_start_addr = addr;
+            auto mem_map = mem.getAll(); // Move up
+            char debug_str[128];
+            snprintf(debug_str, sizeof(debug_str), 
+                     "MEMSET: View set to %08X: [%02x %02x %02x %02x %02x %02x]", 
+                     addr, 
+                     mem.read(addr, true), mem.read(addr + 1, true), mem.read(addr + 2, true),
+                     mem.read(addr + 3, true), mem.read(addr + 4, true), mem.read(addr + 5, true));
+            status = debug_str;
+            char post_str[128];
+            snprintf(post_str, sizeof(post_str), " | Post-execute: [%02x %02x %02x %02x %02x %02x]",
+                     mem_map.count(addr) ? mem_map.at(addr) : 0,
+                     mem_map.count(addr + 1) ? mem_map.at(addr + 1) : 0,
+                     mem_map.count(addr + 2) ? mem_map.at(addr + 2) : 0,
+                     mem_map.count(addr + 3) ? mem_map.at(addr + 3) : 0,
+                     mem_map.count(addr + 4) ? mem_map.at(addr + 4) : 0,
+                     mem_map.count(addr + 5) ? mem_map.at(addr + 5) : 0);
+            status += post_str;
+            if (!is_running) {
+                history.push_back({cmd_addr, cmd});
+                regs.set("EIP", cmd_addr + 4);
+            }
+        } catch (...) {
+            status = "MEMSET failed: Invalid address";
         }
-    } else if (op_upper == "SETTEXT") {
+    } else {
+        status = "MEMSET failed: Missing address";
+    }
+        } else if (op_upper == "SETTEXT") {
+    if (!reg1.empty() && cmd.find('"') != std::string::npos) {
+        try {
+            std::string addr_str = reg1;
+            std::transform(addr_str.begin(), addr_str.end(), addr_str.begin(), ::toupper);
+            uint32_t addr = std::stoul(addr_str, nullptr, 16);
+            size_t quote_start = cmd.find('"');
+            size_t quote_end = cmd.find('"', quote_start + 1);
+            if (quote_start != std::string::npos && quote_end != std::string::npos && quote_end > quote_start + 1) {
+                std::string text = cmd.substr(quote_start + 1, quote_end - quote_start - 1);
+                mem.writeText(addr, text);
+                // Debug: Check memory contents
+                char debug_str[128];
+                snprintf(debug_str, sizeof(debug_str), 
+                         "SETTEXT: Wrote \"%s\" at %s: [%02x %02x %02x %02x %02x %02x]", 
+                         text.c_str(), reg1.c_str(),
+                         mem.read(addr, true), mem.read(addr + 1, true), mem.read(addr + 2, true),
+                         mem.read(addr + 3, true), mem.read(addr + 4, true), mem.read(addr + 5, true));
+                status = debug_str;
+                if (!is_running) {
+                    history.push_back({cmd_addr, cmd});
+                    regs.set("EIP", cmd_addr + 4);
+                }
+            } else {
+                status = "SETTEXT failed: Invalid text format";
+            }
+        } catch (...) {
+            status = "SETTEXT failed: Invalid address";
+        }
+    } else {
+        status = "SETTEXT failed: Missing address or text";
+    }
+ /*   } else if (op_upper == "SETTEXT") {
         if (!reg1.empty() && cmd.find('"') != std::string::npos) {
             try {
                 std::string addr_str = reg1;
@@ -650,7 +716,7 @@ std::string CPU::execute(const std::string& cmd, uint32_t* memory_start_addr) {
             }
         } else {
             status = "SETTEXT failed: Missing address or text";
-        }
+        } */
     } else if (op_upper == "HELP") {
         status = "HELP: See emulator for full command list";
         if (!is_running) {

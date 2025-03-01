@@ -823,6 +823,7 @@ CMakeFiles/emulator.dir/src/Registers.cpp.o: /home/abr/PROJECTS/C++Projects/C++L
 
 CMakeFiles/emulator.dir/src/Screen.cpp.o: /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/src/Screen.cpp \
   /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Memory.hpp \
+  /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Registers.hpp \
   /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Screen.hpp \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -957,7 +958,6 @@ CMakeFiles/emulator.dir/src/Screen.cpp.o: /home/abr/PROJECTS/C++Projects/C++Less
   /usr/include/c++/14.2.1/bits/stl_map.h \
   /usr/include/c++/14.2.1/bits/stl_multimap.h \
   /usr/include/c++/14.2.1/bits/stl_pair.h \
-  /usr/include/c++/14.2.1/bits/stl_relops.h \
   /usr/include/c++/14.2.1/bits/stl_tree.h \
   /usr/include/c++/14.2.1/bits/stl_uninitialized.h \
   /usr/include/c++/14.2.1/bits/stl_vector.h \
@@ -1010,7 +1010,6 @@ CMakeFiles/emulator.dir/src/Screen.cpp.o: /home/abr/PROJECTS/C++Projects/C++Less
   /usr/include/c++/14.2.1/tuple \
   /usr/include/c++/14.2.1/type_traits \
   /usr/include/c++/14.2.1/typeinfo \
-  /usr/include/c++/14.2.1/utility \
   /usr/include/c++/14.2.1/vector \
   /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/atomic_word.h \
   /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/c++allocator.h \

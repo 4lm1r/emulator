@@ -40,10 +40,17 @@ void Memory::clear() {
     mem.clear();
 }
 
-std::map<uint32_t, uint32_t> Memory::getAll() const {
+/*std::map<uint32_t, uint32_t> Memory::getAll() const {
     std::map<uint32_t, uint32_t> memoryMap;
     for (const auto& pair : memory_) {
          memoryMap[pair.first] = pair.second.getValue();
+    }
+    return memoryMap;
+}  */
+std::map<uint32_t, uint32_t> Memory::getAll() const {
+    std::map<uint32_t, uint32_t> memoryMap;
+    for (const auto& pair : memory_) {
+        memoryMap[pair.first] = pair.second.getValue();
     }
     return memoryMap;
 }
@@ -54,3 +61,10 @@ void Memory::writeText(uint32_t addr, const std::string& text) {
     }
     mem[addr + text.length()] = 0;
 }
+/*
+void Memory::writeText(uint32_t addr, const std::string& text) {
+    for (size_t i = 0; i < text.length(); i++) {
+        memory_[addr + i].setValue(static_cast<uint8_t>(text[i]));
+    }
+    memory_[addr + text.length()].setValue(0);
+} */
