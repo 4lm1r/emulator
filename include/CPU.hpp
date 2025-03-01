@@ -14,6 +14,7 @@ public:
     std::string execute(const std::string& cmd, uint32_t* memory_start_addr = nullptr); // Changed to string
     std::vector<std::pair<uint32_t, std::string>>& getHistory();
     void clearHistory();
+    std::string memview(uint32_t addr, const std::string& addr_str, uint32_t* memory_start_addr);
 
 private:
     Registers& regs;

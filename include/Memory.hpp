@@ -17,7 +17,9 @@ public:
     void erase(uint32_t addr);
     void clear();
     std::map<uint32_t, uint32_t> getAll() const;
+    std::map<uint32_t, uint8_t> getAllBytes() const; // Corrected: no Memory::
     void writeText(uint32_t addr, const std::string& text);
+    void memView(uint32_t address, size_t size = 6);
 
 private:
     uint32_t value_;

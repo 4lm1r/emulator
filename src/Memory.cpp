@@ -40,13 +40,13 @@ void Memory::clear() {
     mem.clear();
 }
 
-/*std::map<uint32_t, uint32_t> Memory::getAll() const {
-    std::map<uint32_t, uint32_t> memoryMap;
-    for (const auto& pair : memory_) {
-         memoryMap[pair.first] = pair.second.getValue();
+std::map<uint32_t, uint8_t> Memory::getAllBytes() const {
+    std::map<uint32_t, uint8_t> byteMap;
+    for (const auto& pair : mem) {
+        byteMap[pair.first] = static_cast<uint8_t>(pair.second & 0xFF);
     }
-    return memoryMap;
-}  */
+    return byteMap;
+}
 std::map<uint32_t, uint32_t> Memory::getAll() const {
     std::map<uint32_t, uint32_t> memoryMap;
     for (const auto& pair : memory_) {
@@ -57,14 +57,8 @@ std::map<uint32_t, uint32_t> Memory::getAll() const {
 
 void Memory::writeText(uint32_t addr, const std::string& text) {
     for (size_t i = 0; i < text.length(); i++) {
-        mem[addr + i] = static_cast<uint8_t>(text[i]);
+        mem[addr + i] = static_cast<uint8_t>(text[i]); // Change mem to bytes
     }
-    mem[addr + text.length()] = 0;
+    mem[addr + text.length()] = 0; // Change mem to bytes
 }
-/*
-void Memory::writeText(uint32_t addr, const std::string& text) {
-    for (size_t i = 0; i < text.length(); i++) {
-        memory_[addr + i].setValue(static_cast<uint8_t>(text[i]));
-    }
-    memory_[addr + text.length()].setValue(0);
-} */
+
