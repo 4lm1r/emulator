@@ -1,7 +1,7 @@
 CMakeFiles/emulator.dir/src/Memory.cpp.o: \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/src/Memory.cpp \
+ /home/abr/PROJECTS/C++Projects/emulator/src/Memory.cpp \
  /usr/include/stdc-predef.h \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Memory.hpp \
+ /home/abr/PROJECTS/C++Projects/emulator/include/Memory.hpp \
  /usr/include/c++/14.2.1/map \
  /usr/include/c++/14.2.1/bits/requires_hosted.h \
  /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
