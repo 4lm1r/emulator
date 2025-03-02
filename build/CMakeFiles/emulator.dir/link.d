@@ -8,6 +8,7 @@ emulator: \
   CMakeFiles/emulator.dir/src/CPU.cpp.o \
   CMakeFiles/emulator.dir/src/Emulator.cpp.o \
   CMakeFiles/emulator.dir/src/main.cpp.o \
+  CMakeFiles/emulator.dir/src/CommandHandler.cpp.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libcurses.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libcurses.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libcurses.so \
@@ -61,6 +62,8 @@ CMakeFiles/emulator.dir/src/CPU.cpp.o:
 CMakeFiles/emulator.dir/src/Emulator.cpp.o:
 
 CMakeFiles/emulator.dir/src/main.cpp.o:
+
+CMakeFiles/emulator.dir/src/CommandHandler.cpp.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libcurses.so:
 

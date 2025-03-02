@@ -1,7 +1,7 @@
-CMakeFiles/emulator.dir/src/CPU.cpp.o: \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/src/CPU.cpp \
+CMakeFiles/emulator.dir/src/CommandHandler.cpp.o: \
+ /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/src/CommandHandler.cpp \
  /usr/include/stdc-predef.h \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/CPU.hpp \
+ /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/CommandHandler.hpp \
  /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Registers.hpp \
  /usr/include/c++/14.2.1/map \
  /usr/include/c++/14.2.1/bits/requires_hosted.h \
@@ -116,13 +116,6 @@ CMakeFiles/emulator.dir/src/CPU.cpp.o: \
  /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
  /usr/include/bits/stdint-least.h \
  /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Memory.hpp \
- /usr/include/c++/14.2.1/vector \
- /usr/include/c++/14.2.1/bits/stl_uninitialized.h \
- /usr/include/c++/14.2.1/bits/stl_vector.h \
- /usr/include/c++/14.2.1/bits/stl_bvector.h \
- /usr/include/c++/14.2.1/bits/vector.tcc /usr/include/c++/14.2.1/utility \
- /usr/include/c++/14.2.1/bits/stl_relops.h \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/CommandHandler.hpp \
  /usr/include/c++/14.2.1/functional \
  /usr/include/c++/14.2.1/bits/std_function.h \
  /usr/include/c++/14.2.1/typeinfo /usr/include/c++/14.2.1/unordered_map \
@@ -130,7 +123,15 @@ CMakeFiles/emulator.dir/src/CPU.cpp.o: \
  /usr/include/c++/14.2.1/bits/hashtable.h \
  /usr/include/c++/14.2.1/bits/hashtable_policy.h \
  /usr/include/c++/14.2.1/bits/enable_special_members.h \
- /usr/include/c++/14.2.1/array /usr/include/c++/14.2.1/compare \
+ /usr/include/c++/14.2.1/vector \
+ /usr/include/c++/14.2.1/bits/stl_uninitialized.h \
+ /usr/include/c++/14.2.1/bits/stl_vector.h \
+ /usr/include/c++/14.2.1/bits/stl_bvector.h \
+ /usr/include/c++/14.2.1/bits/vector.tcc /usr/include/c++/14.2.1/array \
+ /usr/include/c++/14.2.1/compare \
+ /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/CPU.hpp \
+ /usr/include/c++/14.2.1/utility \
+ /usr/include/c++/14.2.1/bits/stl_relops.h \
  /usr/include/c++/14.2.1/sstream /usr/include/c++/14.2.1/istream \
  /usr/include/c++/14.2.1/ios /usr/include/c++/14.2.1/exception \
  /usr/include/c++/14.2.1/bits/exception_ptr.h \
@@ -172,4 +173,20 @@ CMakeFiles/emulator.dir/src/CPU.cpp.o: \
  /usr/include/c++/14.2.1/bits/basic_ios.tcc \
  /usr/include/c++/14.2.1/ostream /usr/include/c++/14.2.1/bits/ostream.tcc \
  /usr/include/c++/14.2.1/bits/istream.tcc \
- /usr/include/c++/14.2.1/bits/sstream.tcc
+ /usr/include/c++/14.2.1/bits/sstream.tcc \
+ /usr/include/c++/14.2.1/algorithm \
+ /usr/include/c++/14.2.1/bits/stl_algo.h \
+ /usr/include/c++/14.2.1/bits/algorithmfwd.h \
+ /usr/include/c++/14.2.1/bits/stl_heap.h \
+ /usr/include/c++/14.2.1/bits/uniform_int_dist.h \
+ /usr/include/c++/14.2.1/bits/stl_tempbuf.h \
+ /usr/include/c++/14.2.1/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/14.2.1/pstl/execution_defs.h \
+ /usr/include/c++/14.2.1/set /usr/include/c++/14.2.1/bits/stl_set.h \
+ /usr/include/c++/14.2.1/bits/stl_multiset.h \
+ /usr/include/c++/14.2.1/cstring /usr/include/string.h \
+ /usr/include/strings.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
+ /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
+ /usr/include/linux/close_range.h

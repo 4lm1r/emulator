@@ -153,6 +153,30 @@ src/CPU.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/CPU.cpp.s
 .PHONY : src/CPU.cpp.s
 
+src/CommandHandler.o: src/CommandHandler.cpp.o
+.PHONY : src/CommandHandler.o
+
+# target to build an object file
+src/CommandHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/CommandHandler.cpp.o
+.PHONY : src/CommandHandler.cpp.o
+
+src/CommandHandler.i: src/CommandHandler.cpp.i
+.PHONY : src/CommandHandler.i
+
+# target to preprocess a source file
+src/CommandHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/CommandHandler.cpp.i
+.PHONY : src/CommandHandler.cpp.i
+
+src/CommandHandler.s: src/CommandHandler.cpp.s
+.PHONY : src/CommandHandler.s
+
+# target to generate assembly for a file
+src/CommandHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emulator.dir/build.make CMakeFiles/emulator.dir/src/CommandHandler.cpp.s
+.PHONY : src/CommandHandler.cpp.s
+
 src/Emulator.o: src/Emulator.cpp.o
 .PHONY : src/Emulator.o
 
@@ -285,6 +309,9 @@ help:
 	@echo "... src/CPU.o"
 	@echo "... src/CPU.i"
 	@echo "... src/CPU.s"
+	@echo "... src/CommandHandler.o"
+	@echo "... src/CommandHandler.i"
+	@echo "... src/CommandHandler.s"
 	@echo "... src/Emulator.o"
 	@echo "... src/Emulator.i"
 	@echo "... src/Emulator.s"
