@@ -1,3 +1,0 @@
-/home/abr/PROJECTS/C++Projects/emulator/build/CMakeFiles/emulator.dir
-/home/abr/PROJECTS/C++Projects/emulator/build/CMakeFiles/edit_cache.dir
-/home/abr/PROJECTS/C++Projects/emulator/build/CMakeFiles/rebuild_cache.dir
