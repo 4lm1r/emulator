@@ -1,8 +1,8 @@
 CMakeFiles/emulator.dir/src/CPU.cpp.o: \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/src/CPU.cpp \
+ /home/abr/PROJECTS/C++Projects/emulator/src/CPU.cpp \
  /usr/include/stdc-predef.h \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/CPU.hpp \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Registers.hpp \
+ /home/abr/PROJECTS/C++Projects/emulator/include/CPU.hpp \
+ /home/abr/PROJECTS/C++Projects/emulator/include/Registers.hpp \
  /usr/include/c++/14.2.1/map \
  /usr/include/c++/14.2.1/bits/requires_hosted.h \
  /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -115,7 +115,7 @@ CMakeFiles/emulator.dir/src/CPU.cpp.o: \
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
  /usr/include/bits/stdint-least.h \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Memory.hpp \
+ /home/abr/PROJECTS/C++Projects/emulator/include/Memory.hpp \
  /usr/include/c++/14.2.1/vector \
  /usr/include/c++/14.2.1/bits/stl_uninitialized.h \
  /usr/include/c++/14.2.1/bits/stl_vector.h \

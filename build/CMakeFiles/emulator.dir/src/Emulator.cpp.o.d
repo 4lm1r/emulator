@@ -1,8 +1,8 @@
 CMakeFiles/emulator.dir/src/Emulator.cpp.o: \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/src/Emulator.cpp \
+ /home/abr/PROJECTS/C++Projects/emulator/src/Emulator.cpp \
  /usr/include/stdc-predef.h \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Emulator.hpp \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Screen.hpp \
+ /home/abr/PROJECTS/C++Projects/emulator/include/Emulator.hpp \
+ /home/abr/PROJECTS/C++Projects/emulator/include/Screen.hpp \
  /usr/include/curses.h /usr/include/ncurses_dll.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/libc-header-start.h \
@@ -119,10 +119,10 @@ CMakeFiles/emulator.dir/src/Emulator.cpp.o: \
  /usr/include/c++/14.2.1/bits/stl_vector.h \
  /usr/include/c++/14.2.1/bits/stl_bvector.h \
  /usr/include/c++/14.2.1/bits/vector.tcc \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Registers.hpp \
+ /home/abr/PROJECTS/C++Projects/emulator/include/Registers.hpp \
  /usr/include/c++/14.2.1/cstdint \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Memory.hpp \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/CPU.hpp \
+ /home/abr/PROJECTS/C++Projects/emulator/include/Memory.hpp \
+ /home/abr/PROJECTS/C++Projects/emulator/include/CPU.hpp \
  /usr/include/c++/14.2.1/utility \
  /usr/include/c++/14.2.1/bits/stl_relops.h /usr/include/unistd.h \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \

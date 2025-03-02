@@ -1,7 +1,7 @@
 CMakeFiles/emulator.dir/src/Screen.cpp.o: \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/src/Screen.cpp \
+ /home/abr/PROJECTS/C++Projects/emulator/src/Screen.cpp \
  /usr/include/stdc-predef.h \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Screen.hpp \
+ /home/abr/PROJECTS/C++Projects/emulator/include/Screen.hpp \
  /usr/include/curses.h /usr/include/ncurses_dll.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/libc-header-start.h \
@@ -118,9 +118,9 @@ CMakeFiles/emulator.dir/src/Screen.cpp.o: \
  /usr/include/c++/14.2.1/bits/stl_vector.h \
  /usr/include/c++/14.2.1/bits/stl_bvector.h \
  /usr/include/c++/14.2.1/bits/vector.tcc \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Registers.hpp \
+ /home/abr/PROJECTS/C++Projects/emulator/include/Registers.hpp \
  /usr/include/c++/14.2.1/cstdint \
- /home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include/Memory.hpp \
+ /home/abr/PROJECTS/C++Projects/emulator/include/Memory.hpp \
  /usr/include/c++/14.2.1/sstream /usr/include/c++/14.2.1/istream \
  /usr/include/c++/14.2.1/ios /usr/include/c++/14.2.1/exception \
  /usr/include/c++/14.2.1/bits/exception_ptr.h \

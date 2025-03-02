@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/abr/PROJECTS/C++Projects/C++Lessons/AI_Codes/emulator/include
+CXX_INCLUDES = -I/home/abr/PROJECTS/C++Projects/emulator/include
 
 CXX_FLAGS =  -Wall -Wextra -g -std=gnu++17
 

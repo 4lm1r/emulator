@@ -1,17 +1,23 @@
 #include "Emulator.hpp"
-#include <unistd.h>
-#include <sstream>
-#include <algorithm>
+#include <unistd.h>      // For usleep() to introduce delays
+#include <sstream>       // For string stream processing
+#include <algorithm>     // For std::transform to convert strings to uppercase
 
+// Constructor for Emulator class
+// Initializes the CPU with registers (regs) and memory (mem), sets default memory start address
 Emulator::Emulator() : cpu(regs, mem), memory_start_addr(0xFFFFF000) {}
 
+// Main execution loop for the emulator
 void Emulator::run() {
-    screen.updateRegisters(regs.getAll(), "");
-    screen.updateStack(mem, regs.get("ESP"));
-    screen.updateMemoryAndHistory(mem.getAllBytes(), memory_start_addr, cpu.getHistory());
-    screen.updateStatus("Ready (Enter to submit)");
+    // Initial UI update: display registers, stack, memory, and status
+    screen.updateRegisters(regs.getAll(), "");  // Show all register values
+    screen.updateStack(mem, regs.get("ESP"));  // Update stack view using ESP (stack pointer)
+    screen.updateMemoryAndHistory(mem.getAllBytes(), memory_start_addr, cpu.getHistory());  // Show memory and CPU history
+    screen.updateStatus("Ready (Enter to submit)");  // Indicate emulator is ready for input
 
+    // Infinite loop to process emulator commands
     while (true) {
+
         std::string input = screen.getInput();
         if (!input.empty()) {
             std::string status = cpu.execute(input, &memory_start_addr);
@@ -27,10 +33,19 @@ void Emulator::run() {
             screen.updateStack(mem, regs.get("ESP"));
             screen.updateMemoryAndHistory(mem.getAllBytes(), memory_start_addr, cpu.getHistory());
 
+            // Update UI with status, memory checks, and debug info
+            screen.updateStatus(status + mem_check_execute + debug + mem_check);
+            screen.updateRegisters(regs.getAll(), "");  // Refresh register display
+            screen.updateStack(mem, regs.get("ESP"));  // Refresh stack display
+            screen.updateMemoryAndHistory(mem.getAllBytes(), memory_start_addr, cpu.getHistory());  // Refresh memory and history
+
+            // Check for QUIT command to exit the loop
             if (status == "QUIT") {
-                break;
+                break;  // Exit the emulator loop
             }
         }
+
+        // Brief delay (50ms) to prevent excessive CPU usage
         usleep(50000);
     }
 }

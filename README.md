@@ -57,8 +57,7 @@ This project uses **CMake** to manage the build process. The build is configured
 # Usage
 
   Once launched, the emulator provides a terminal-based interface via ncurses. Use the keyboard to
-  interact with the emulator (specific controls will depend on the implemented instruction set and UI
-  design—update this section as needed).
+  interact with the emulator
 
 # Contributing
 

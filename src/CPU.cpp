@@ -29,11 +29,12 @@ std::string CPU::memview(uint32_t addr, const std::string& addr_str, uint32_t* m
 }
 
 std::vector<std::pair<uint32_t, std::string>>& CPU::getHistory() {
-    return history;
+    return history;  // Return vector of address-command pairs
 }
 
+// Clears command history
 void CPU::clearHistory() {
-    history.clear();
+    history.clear();  // Empty the history vector
 }
 
 void CPU::runHistory() {
