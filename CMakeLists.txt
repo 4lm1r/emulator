@@ -15,6 +15,7 @@ set(SOURCES
     src/CPU.cpp
     src/Emulator.cpp
     src/main.cpp
+    src/CommandHandler.cpp
 )
 
 add_executable(emulator ${SOURCES})
